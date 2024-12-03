@@ -1,7 +1,19 @@
 #include "Particle.h"
 
-Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition)
+Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition) : m_A(2, numPoints)
 {
+	m_ttl = TTL;
+	m_numPoints = numPoints;
+	m_radiansPerSec = ((float)rand() / (RAND_MAX)) / PI;
+	m_cartesianPlane.setCenter(0, 0); 
+	m_cartesianPlane.setSize(target.getSize().x, (-1.0) * target.getSize().y);
+	///m_centerCoordinate needs to be added
+	if((rand % 2) == 0) m_vx = rand % 400 + 100;
+	else m_vx = -1 * (rand % 400 + 100);
+	if((rand % 2) == 0) m_vy = rand % 400 + 100;
+	else m_vy = -1 * (rand % 400 + 100);
+	m_color1{255,255,255};
+	m_color1{rand % 256, rand % 256, rand % 256};
 	
 }
 virtual void Particle::draw(RenderTarget& target, RenderStates states) const override
