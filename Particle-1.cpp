@@ -1,9 +1,36 @@
 #include "Particle.h"
 
-
+Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition)
+{
+	
+}
+virtual void Particle::draw(RenderTarget& target, RenderStates states) const override
+{
+	
+}
+void Particle::update(float dt)
+{
+	
+}
 bool Particle::almostEqual(double a, double b, double eps)
 {
 	return fabs(a - b) < eps;
+}
+void Particle::rotate(double theta)
+{
+	
+}
+///Scale the size of the Particle by factor c
+///construct a ScalingMatrix S, left multiply it to m_A
+void Particle::scale(double c)
+{
+	
+}
+///shift the Particle by (xShift, yShift) coordinates
+///construct a TranslationMatrix T, add it to m_A
+void Particle::translate(double xShift, double yShift)
+{
+	
 }
 
 void Particle::unitTests()
