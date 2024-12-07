@@ -29,14 +29,14 @@ void Engine::update(float dtAsSeconds)
 {
 	for (int i = 0; i < m_particles.size())
 	{
-		if (m_particles(i).getTTL() > 0.0)
+		if (m_particles(i).getTTL() > 0.0)	// Time to Live > 0
 		{
-			m_particles(i).update(dtAsSeconds);
+			m_particles(i).update(dtAsSeconds);	// Update the particle
 			i++;
 		}
 		else
 		{
-			m_particles(i).erase();
+			m_particles(i).erase();		//Remove the particle (Don't increment i)
 		}
 	}
 }
@@ -44,7 +44,8 @@ void Engine::update(float dtAsSeconds)
 void Engine::draw()
 {
 	m_windwow.clear();
-	for (Particle P : m_particles)	//loop through each particle
+	for (Particle P : m_particles)	//loop through each particle 
+					//(pass by reference will be better if we have a lot of particles)
 	{
 		m_window.draw(P);	//pass each element into m_window
 		m_window.display();	//display 
