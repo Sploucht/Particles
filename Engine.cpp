@@ -43,7 +43,7 @@ void Engine::update(float dtAsSeconds)
 
 Engine::Engine()
 {
-	m_Window.create(VideoMode::getDesktopMode());
+	m_Window.create(VideoMode::getDesktopMode(), "Particals", Style::Default);
 }
 
 void Engine::draw()
