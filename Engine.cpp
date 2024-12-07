@@ -1,5 +1,9 @@
 #include "Engine.h"
 
+Engine::Engine()
+{
+	m_Window.create(VideoMode::getDesktopMode());
+}
 
 void Engine::input()
 {
@@ -23,6 +27,7 @@ void Engine::input()
 				}
 			}
 		}
+	}
 }
 
 void Engine::update(float dtAsSeconds)
@@ -52,10 +57,6 @@ void Engine::draw()
 	}
 }
 
-Engine::Engine()
-{
-	m_Window.create(VideoMode::getDesktopMode());
-}
 
 void Engine::run()
 {
