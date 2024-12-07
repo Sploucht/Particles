@@ -64,7 +64,7 @@ void Engine::run()
 	while (m_Window.isOpen())
 	{
 		input();
-		update(float(clock.getElapsedTime()));
+		update(clock.getElapsedTime().asSeconds);
 		draw();
 		clock.restart();
 	}
