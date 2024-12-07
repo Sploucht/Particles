@@ -36,7 +36,7 @@ void Engine::update(float dtAsSeconds)
 		}
 		else
 		{
-			m_particles[i].erase();		//Remove the particle (Don't increment i)
+			m_particles.erase(m_particles.begin() + i);		//Remove the particle (Don't increment i)
 		}
 	}
 }
