@@ -19,7 +19,7 @@ void Engine::input()
 				//Pass the x,y coords to particles
 				for(int i = 0; i < 5; i++)
 				{
-					m_particles.push_back(m_Window, rand() % 25 + 25, Vector2i(event.mouseButton.x, event.mouseButton.y));
+					m_particles.push_back(Particle(m_Window, rand() % 25 + 25, Vector2i(event.mouseButton.x, event.mouseButton.y)));
 				}
 			}
 		}
@@ -54,7 +54,7 @@ void Engine::draw()
 
 Engine::Engine()
 {
-	m_Window.create(VideoMode::getDesktopMode())
+	m_Window.create(VideoMode::getDesktopMode());
 }
 
 void Engine::run()
