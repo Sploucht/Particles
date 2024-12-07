@@ -1,10 +1,5 @@
 #include "Engine.h"
 
-Engine::Engine()
-{
-	m_Window.create(VideoMode::getDesktopMode());
-}
-
 void Engine::input()
 {
 	Event event;
@@ -32,7 +27,7 @@ void Engine::input()
 
 void Engine::update(float dtAsSeconds)
 {
-	for (int i = 0; i < m_particles.size())
+	for (int i = 0; i < m_particles.size();)
 	{
 		if (m_particles[i].getTTL() > 0.0)	// Time to Live > 0
 		{
@@ -44,6 +39,11 @@ void Engine::update(float dtAsSeconds)
 			m_particles.erase(m_particles.begin() + i);		//Remove the particle (Don't increment i)
 		}
 	}
+}
+
+Engine::Engine()
+{
+	m_Window.create(VideoMode::getDesktopMode());
 }
 
 void Engine::draw()
@@ -64,7 +64,7 @@ void Engine::run()
 	while (m_Window.isOpen())
 	{
 		input();
-		update(clock.getElapsedTime());
+		update(float(clock.getElapsedTime()));
 		draw();
 		clock.restart();
 	}
