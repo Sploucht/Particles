@@ -4,22 +4,45 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 {
 	m_ttl = TTL;
 	m_numPoints = numPoints;
-	m_radiansPerSec = ((float)rand() / (RAND_MAX)) / PI;
+	m_radiansPerSec = ((float)rand() / (RAND_MAX)) * PI;
 	m_cartesianPlane.setCenter(0, 0); 
 	m_cartesianPlane.setSize(target.getSize().x, (-1.0) * target.getSize().y);
-	///m_centerCoordinate needs to be added
+	m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
 	if((rand % 2) == 0) m_vx = rand % 400 + 100;
 	else m_vx = -1 * (rand % 400 + 100);
 	if((rand % 2) == 0) m_vy = rand % 400 + 100;
 	else m_vy = -1 * (rand % 400 + 100);
 	m_color1{255,255,255};
-	m_color1{rand % 256, rand % 256, rand % 256};
-	
-	
+	m_color2{rand % 256, rand % 256, rand % 256};
+	float theta = ((float)rand() / (RAND_MAX)) * (PI / 2);
+	float dTheta = 2 * PI / (numPoints - 1);
+	for(int j = 0; j < numPoints; j++)
+	{
+		int r = rand() % 20 + 60;
+		float dx;
+		float dy;
+		dx = r * cos(theta)
+		dy = r * sin(theta)
+   		m_A(0, j) = m_centerCoordinate.x + dx;
+    		m_A(1, j) = m_centerCoordinate.y + dy;
+		theta += dTheta;
+	}
 }
 void Particle::draw(RenderTarget& target, RenderStates states) const override
 {
-	
+	VertexArray lines(sf::TriangleFan, numPoints + 1);;
+	Vector2f center = target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane);
+	vector2i A;
+	lines[0].position = center;
+	lines[0].color = m_color1;
+	for(int j = 1; j <= m_numPoints; j++)
+	{
+		A.x = m_A(0, j - 1);
+		A.y = m_A(1, j - 1);
+		lines[j].position = vector2f(target.mapCoordsToPixel(A, m_cartesianPlane));
+		lines[j].color = m_Color2;
+	}
+	target.draw(lines);
 }
 void Particle::update(float dt)
 {
