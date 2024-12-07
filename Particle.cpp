@@ -32,7 +32,7 @@ void Particle::draw(RenderTarget& target, RenderStates states) const override
 {
 	VertexArray lines(sf::TriangleFan, numPoints + 1);;
 	Vector2f center = target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane);
-	vector2i A;
+	vector2f A;
 	lines[0].position = center;
 	lines[0].color = m_color1;
 	for(int j = 1; j <= m_numPoints; j++)
