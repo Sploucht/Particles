@@ -17,10 +17,10 @@ void Engine::input()
 			{
 				//TODO : Create loop to construct ~5 particles
 				//Pass the x,y coords to particles
-			}
-			if (event.mouseButton.button == sf::Mouse::Right)
-			{
-				//TODO : whatever extra credit we want
+				for(int i = 0; i < 5; i++)
+				{
+					m_particles.push_back(m_Window, rand() % 25 + 25, event.mouseButton);
+				}
 			}
 		}
 }
