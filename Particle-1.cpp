@@ -40,7 +40,7 @@ void Particle::draw(RenderTarget& target, RenderStates states) const override
 		A.x = m_A(0, j - 1);
 		A.y = m_A(1, j - 1);
 		lines[j].position = vector2f(target.mapCoordsToPixel(A, m_cartesianPlane));
-		lines[j].color = m_Color2;
+		lines[j].color = m_color2;
 	}
 	target.draw(lines);
 }
