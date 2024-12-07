@@ -81,7 +81,7 @@ void Particle::scale(double c)
 ///construct a TranslationMatrix T, add it to m_A
 void Particle::translate(double xShift, double yShift)
 {
-	TranslationMatrix T(xShift, yShift, m_A.size());
+	TranslationMatrix T(xShift, yShift, m_A.getCols());
 	m_A = T + m_A;
 	m_centerCoordinate.x += xShift;
 	m_centerCoordinate.y += yShift;
