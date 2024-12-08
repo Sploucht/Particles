@@ -27,6 +27,7 @@ void Engine::input()
 
 void Engine::update(float dtAsSeconds)
 {
+	m_particles[1].unitTests();
 	for (int i = 0; i < m_particles.size();)
 	{
 		if (m_particles[i].getTTL() > 0.0)	// Time to Live > 0
