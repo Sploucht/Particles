@@ -4,7 +4,7 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 {
 	m_ttl = TTL;
 	m_numPoints = numPoints;
-	m_radiansPerSec = ((float)rand() / (RAND_MAX)) * PI;
+	m_radiansPerSec = ((float)rand() / (RAND_MAX)) * M_PI;
 	m_cartesianPlane.setCenter(0, 0); 
 	m_cartesianPlane.setSize(target.getSize().x, (-1.0) * target.getSize().y);
 	m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
@@ -12,9 +12,13 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 	else m_vx = -1 * (rand() % 400 + 100);
 	if((rand() % 2) == 0) m_vy = rand() % 400 + 100;
 	else m_vy = -1 * (rand() % 400 + 100);
-	m_color1{255,255,255};
-	m_color2{rand() % 256, rand() % 256, rand() % 256};
-	float theta = ((float)rand() / (RAND_MAX)) * (PI / 2);
+	m_color1.r = 255;
+	m_color1.g = 255;
+	m_color1.b = 255;
+	m_color2.r = rand() % 256;
+	m_color2.g = rand() % 256;
+	m_color2.b = rand() % 256;
+	float theta = ((float)rand() / (RAND_MAX)) * (M_PI / 2);
 	float dTheta = 2 * PI / (numPoints - 1);
 	for(int j = 0; j < numPoints; j++)
 	{
@@ -28,18 +32,15 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 		theta += dTheta;
 	}
 }
-void Particle::draw(RenderTarget& target, RenderStates states) const override
+void Particle::draw(RenderTarget& target, RenderStates states) const 
 {
 	VertexArray lines(sf::TriangleFan, numPoints + 1);;
-	Vector2f center = target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane);
-	vector2f A;
+	Vector2f center = Vector2f(target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane));
 	lines[0].position = center;
 	lines[0].color = m_color1;
 	for(int j = 1; j <= m_numPoints; j++)
 	{
-		A.x = m_A(0, j - 1);
-		A.y = m_A(1, j - 1);
-		lines[j].position = vector2f(target.mapCoordsToPixel(A, m_cartesianPlane));
+		lines[j].position = Vector2f(target.mapCoordsToPixel(vector2f(m_A.at(0).at(j-1), m_A.at(1).at(j-1)), m_cartesianPlane));
 		lines[j].color = m_color2;
 	}
 	target.draw(lines);
@@ -74,14 +75,14 @@ void Particle::scale(double c)
 	Vector2f temp = m_centerCoordinate;
 	translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
 	ScalingMatrix S(c);
-	m_A = S * m_A
+	m_A = S * m_A;
 	translate(temp.x, temp.y);
 }
 ///shift the Particle by (xShift, yShift) coordinates
 ///construct a TranslationMatrix T, add it to m_A
 void Particle::translate(double xShift, double yShift)
 {
-	TranslationMatrix T(xShift, yShift, m_A.getCols());
+	TranslationMatrix T(xShift, yShift, numPoints);
 	m_A = T + m_A;
 	m_centerCoordinate.x += xShift;
 	m_centerCoordinate.y += yShift;
