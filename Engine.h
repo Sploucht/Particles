@@ -15,7 +15,7 @@ private:
 
 	//vector for Particles
 	vector<Particle> m_particles;
-
+	bool timeStop = false;
 	// Private functions for internal use only
 	void input();
 	void update(float dtAsSeconds);
