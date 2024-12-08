@@ -36,7 +36,7 @@ void Engine::update(float dtAsSeconds)
 	{
 		if (m_particles[i].getTTL() > 0.0)	// Time to Live > 0
 		{
-			m_particles[i].update(dtAsSeconds);	// Update the particle
+			m_particles[i].update(dtAsSeconds, timeStop);	// Update the particle
 			i++;
 		}
 		else
