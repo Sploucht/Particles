@@ -5,6 +5,11 @@ void Engine::input()
 	Event event;
 	while (m_Window.pollEvent(event))
 	{
+		if(Keyboard::isKeyPressed(Keyboard::Space))
+		{
+			if(timeStop == false) timeStop = true;
+			else timeStop = false;
+		}
 		//Close window
 		if (event.type == Event::Closed)
 		{
@@ -70,7 +75,7 @@ void Engine::run()
 		float dt = clock.getElapsedTime().asSeconds();
 		clock.restart();
 		input();
-		update(dt, true);
+		update(dt, timeStop);
 		draw();
 	}
 }
