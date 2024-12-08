@@ -5,24 +5,27 @@ void Engine::input()
 	Event event;
 	while (m_Window.pollEvent(event))
 	{
-		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space)
-       		{
-            		timeStop = !timeStop;
-        	}
+		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space) timeStop = !timeStop;
+		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num1 && Game == 0) Game == 1; 
+		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num2 && Game == 0) Game == 2; 
+		
 		//Close window
 		if (event.type == Event::Closed)
 		{
 			m_Window.close();
 		}
-		if (event.type == sf::Event::MouseButtonPressed)
+		if(Game == 1)
 		{
-			if (event.mouseButton.button == sf::Mouse::Left)
+			if (event.type == sf::Event::MouseButtonPressed)
 			{
-				//TODO : Create loop to construct ~5 particles
-				//Pass the x,y coords to particles
-				for(int i = 0; i < 5; i++)
+				if (event.mouseButton.button == sf::Mouse::Left)
 				{
-					m_particles.push_back(Particle(m_Window, rand() % 50 + 25, Vector2i(event.mouseButton.x, event.mouseButton.y)));
+					//TODO : Create loop to construct ~5 particles
+					//Pass the x,y coords to particles
+					for(int i = 0; i < 5; i++)
+					{
+						m_particles.push_back(Particle(m_Window, rand() % 50 + 25, Vector2i(event.mouseButton.x, event.mouseButton.y)));
+					}
 				}
 			}
 		}
