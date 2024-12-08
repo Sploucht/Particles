@@ -46,16 +46,20 @@ void Particle::draw(RenderTarget& target, RenderStates states) const
 	}
 	target.draw(lines);
 }
-void Particle::update(float dt)
+void Particle::update(float dt, bool timeStop)
 {
-	m_ttl -= dt;
-	rotate(dt * m_radiansPerSec);
-	scale(SCALE);
-	float dx = m_vx * dt;
-	float dy;
-	m_vy -= G * dt;
-	dy = m_vy * dt;
-	translate(dx, dy);
+	if(!timeStop)
+	{
+		m_ttl -= dt;
+		rotate(dt * m_radiansPerSec);
+		scale(SCALE);
+		float dx = m_vx * dt;
+		float dy;
+		m_vy -= G * dt;
+		dy = m_vy * dt;
+		translate(dx, dy);
+	}
+	
 }
 bool Particle::almostEqual(double a, double b, double eps)
 {
