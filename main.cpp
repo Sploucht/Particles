@@ -6,7 +6,6 @@ int main()
 	Engine engine;
 	// Start the engine
 	engine.run();
-	unitTests();
 	// Quit in the usual way when the engine is stopped
 	return 0;
 }
