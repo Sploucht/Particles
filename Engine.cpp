@@ -71,7 +71,6 @@ void Engine::run()
 	Clock clock;
 	while (m_Window.isOpen())
 	{
-		cout << timeStop << endl;
 		float dt = clock.getElapsedTime().asSeconds();
 		clock.restart();
 		input();
