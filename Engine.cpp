@@ -70,7 +70,7 @@ void Engine::run()
 		float dt = clock.getElapsedTime().asSeconds();
 		clock.restart();
 		input();
-		update(dt);
+		update(dt, true);
 		draw();
 	}
 }
