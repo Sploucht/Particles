@@ -5,11 +5,10 @@ void Engine::input()
 	Event event;
 	while (m_Window.pollEvent(event))
 	{
-		if(Keyboard::isKeyPressed(Keyboard::Space))
-		{
-			if(timeStop == false) timeStop = true;
-			else timeStop = false;
-		}
+		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space)
+       		{
+            		timeStop = !timeStop;
+        	}
 		//Close window
 		if (event.type == Event::Closed)
 		{
