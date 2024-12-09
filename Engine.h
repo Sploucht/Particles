@@ -18,6 +18,7 @@ private:
 	Sprite sprite;
 	//vector for Particles
 	vector<Particle> m_particles;
+	mutex particles_mutex;
 	atomic<bool> timeStop{false};
 	atomic<int> Game{0};
 	// Private functions for internal use only
