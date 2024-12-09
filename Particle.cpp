@@ -36,8 +36,8 @@ void Particle::setSpeed(Vector2f Speed)
 {
 	m_vx = 0;
 	m_vy = 0;
-        m_speedx = Speed.x
-        m_speedy = Speed.y 
+        m_speedx = Speed.x;
+        m_speedy = Speed.y;
 	cout << m_speedx << ", " << m_speedy << endl;
 }
 void Particle::draw(RenderTarget& target, RenderStates states) const 
