@@ -34,8 +34,10 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 }
 void Particle::setSpeed(Vector2f Speed)
 {
-	m_speedx = Speed.x;
-	m_speedy = Speed.y;
+	float length = sqrt(Speed.x * Speed.x + Speed.y * Speed.y);  
+        m_speedx = Speed.x / length; 
+        m_speedy = Speed.y / length;  
+    
 }
 void Particle::draw(RenderTarget& target, RenderStates states) const 
 {
