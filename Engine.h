@@ -13,6 +13,13 @@ using namespace std;
 class Engine
 {
 private:
+	//Text
+	Font font;
+	Text text;
+	font.loadFromFile("ARIAL.TTF");
+	text.setFont(font);
+	text.setCharacterSize(24);
+	text.setFillColor(Color::Black);
 	// A regular RenderWindow
 	RenderWindow m_Window;
 	Sprite sprite;
