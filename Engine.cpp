@@ -5,7 +5,7 @@ void Engine::input()
 	Event event;
 	while (m_Window.pollEvent(event))
 	{
-		if (Keyboard::isKeyPressed(Keyboard::Space)) timeStop = !timeStop;
+		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space) timeStop = !timeStop;
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num1 && Game == 0) Game = 1; 
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num2 && Game == 0) Game = 2; 
 		
