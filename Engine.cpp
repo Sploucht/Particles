@@ -22,6 +22,12 @@ void Engine::MakeSprite()
 	sprite.setTexture(texture);
 	sprite.setPosition(Vector2f(1600, 500));
 }
+void Engine::MoveSprite()
+{
+	
+	int MoveFactor = 10;
+	sprite.move(0, MoveFactor);
+}
 void Engine::input()
 {
 	MakeSprite();
