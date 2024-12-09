@@ -16,12 +16,7 @@ class Engine
 {
 private:
 	//Text
-	Font font;
-	Text text;
-	font.loadFromFile("ARIAL.TTF");
-	text.setFont(font);
-	text.setCharacterSize(24);
-	text.setFillColor(Color::Black);
+	
 	// A regular RenderWindow
 	float m_framerate;
 	RenderWindow m_Window;
