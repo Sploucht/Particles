@@ -159,7 +159,7 @@ void Engine::run()
 	Clock clock;
 	while (m_Window.isOpen())
 	{
-		m_framerate = 1.f / Clock.GetElapsedTime();	//FPS
+		m_framerate = 1.f / clock.GetElapsedTime();	//FPS
 		float dt = clock.getElapsedTime().asSeconds();
 		clock.restart();
 		input();
