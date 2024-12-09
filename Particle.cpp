@@ -61,10 +61,10 @@ void Particle::update(float dt, bool timeStop)
 		float dx;
 		float dy;
 		m_vx -= m_speedy * dt;
-		dx = m_vx * dt;
+		dx = m_vx;
 		m_vy -= G * dt;
 		m_vy -= m_speedy * dt;
-		dy = m_vy * dt;
+		dy = m_vy;
 		translate(dx, dy);
 	}
 	
