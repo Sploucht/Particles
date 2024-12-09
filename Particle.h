@@ -25,8 +25,6 @@ Vector2f m_centerCoordinate;
 float m_radiansPerSec;
 float m_vx;
 float m_vy;
-float m_speedx = 0;
-float m_speedy = 0;
 View m_cartesianPlane;
 Color m_color1;
 Color m_color2;
