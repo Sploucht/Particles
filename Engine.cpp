@@ -119,7 +119,7 @@ Engine::Engine()
 	font.loadFromFile("ARIAL.TTF");
 	text.setFont(font);
 	text.setCharacterSize(24);
-	text.setFillColor(Color::Black);
+	text.setFillColor(Color::White);
 	m_Window.create(VideoMode::getDesktopMode(), "Particals", Style::Default);
 }
 
