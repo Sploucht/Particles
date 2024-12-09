@@ -45,8 +45,9 @@ void Engine::input()
 				}
 				if (event.mouseButton.button == sf::Mouse::Left && m_particles.size() == 1)
 				{
-					m_particles[0].setSpeed(Vector2f(original - (event.mouseButton.x, event.mouseButton.y)));
+					m_particles[0].setSpeed(original - Vector2f(event.mouseButton.x, event.mouseButton.y));
 					timeStop = false;
+					cout << original.x - event.mouseButton.x << endl;
 				}
 				
 			}
