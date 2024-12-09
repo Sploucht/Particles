@@ -16,7 +16,7 @@ class Engine
 {
 private:
 	//Text
-	
+	Text text;
 	// A regular RenderWindow
 	float m_framerate;
 	RenderWindow m_Window;
