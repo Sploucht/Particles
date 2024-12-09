@@ -148,6 +148,6 @@ void Engine::run()
 		input();
 		update(dt);
 		draw();
-		MoveSprite();
+		if (Game == 2) MoveSprite();
 	}
 }
