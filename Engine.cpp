@@ -57,6 +57,8 @@ void Engine::input()
 		}
 		if(Game == 2)
 		{
+			MakeSprite();
+			Vector2f original;
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				if (event.mouseButton.button == sf::Mouse::Left && m_particles.size() == 0)
