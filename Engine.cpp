@@ -135,6 +135,13 @@ void Engine::draw()
 	m_Window.display();	
 }
 
+void Engine::loadText(Text& text)
+{
+	stringstream ss;
+	ss << "Particles" << endl;
+	//ss << "FPS : " << Framerate << endl;
+	text.setString(ss.str());
+}
 
 void Engine::run()
 {
