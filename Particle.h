@@ -14,6 +14,7 @@ Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition);
 virtual void draw(RenderTarget& target, RenderStates states) const override;
 void update(float dt, bool timeStop);
 float getTTL() { return m_ttl; }
+void setSpeed(Vector2f Speed);
 //Functions for unit testing
 bool almostEqual(double a, double b, double eps = 0.0001);
 void unitTests();
