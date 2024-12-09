@@ -21,6 +21,7 @@ private:
 	text.setCharacterSize(24);
 	text.setFillColor(Color::Black);
 	// A regular RenderWindow
+	float m_framerate;
 	RenderWindow m_Window;
 	Sprite sprite;
 	Texture texture;
@@ -39,6 +40,7 @@ private:
 public:
 	// The Engine constructor
 	Engine();
+	float getFramerate() {return m_framerate;}
 	void MakeSprite();
 	void MoveSprite();
 	// Run will call all the private functions
