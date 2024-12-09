@@ -1,5 +1,5 @@
 CXX := g++
-SOURCES := main.cpp Engine.cpp Particle.cpp
+SOURCES := main.cpp Engine.cpp Particle.cpp Matrices.cpp
 OBJECTS := $(SOURCES:.cpp=.o)
 LDFLAGS := -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -pthread
 CPPFLAGS := -g -Wall -fpermissive -std=c++17 -pthread
