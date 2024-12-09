@@ -126,7 +126,11 @@ void Engine::draw()
 		{
 			m_Window.draw(P);	//pass each element into m_window
 		}
-		if (Game == 2) m_Window.draw(sprite);
+		if (Game == 2) 
+		{
+			MoveSprite();
+			m_Window.draw(sprite);
+		}
 	}
 	m_Window.display();	
 }
@@ -146,6 +150,5 @@ void Engine::run()
 		input();
 		update(dt);
 		draw();
-		if (Game == 2) MoveSprite();
 	}
 }
