@@ -5,7 +5,6 @@ void Engine::input()
 	Event event;
 	while (m_Window.pollEvent(event))
 	{
-		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space) timeStop = !timeStop;
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num1 && Game == 0) Game = 1; 
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num2 && Game == 0) Game = 2; 
 		
@@ -18,6 +17,7 @@ void Engine::input()
 		}
 		if(Game == 1)
 		{
+			if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space) timeStop = !timeStop;
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				if (event.mouseButton.button == sf::Mouse::Left)
@@ -29,6 +29,27 @@ void Engine::input()
 						m_particles.push_back(Particle(m_Window, rand() % 50 + 25, Vector2i(event.mouseButton.x, event.mouseButton.y)));
 					}
 				}
+			}
+		}
+		if(Game == 2)
+		{
+			
+			if (event.type == sf::Event::MouseButtonPressed)
+			{
+				if (event.mouseButton.button == sf::Mouse::Left && m_particles.size() == 0)
+				{
+					timeStop = true;
+					Vector2f original;
+					original.x = event.mouseButton.x;
+					original.y = event.mouseButton.y;
+					m_particles.push_back(Particle(m_Window, rand() % 50 + 25, Vector2i(event.mouseButton.x, event.mouseButton.y)));
+					if (event.mouseButton.button == sf::Mouse::Left)
+					{
+						m_particles[0].setSpeed(Vector2f(original - (event.mouseButton.x, event.mouseButton.y)));
+						timeStop = false;
+					}
+				}
+				
 			}
 		}
 	}
