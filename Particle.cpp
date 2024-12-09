@@ -60,7 +60,7 @@ void Particle::update(float dt, bool timeStop)
 		scale(SCALE);
 		float dx;
 		float dy;
-		m_vx -= m_speedy * dt;
+		m_vx -= m_speedx * dt;
 		dx = m_vx * dt;
 		m_vy -= G * dt;
 		m_vy -= m_speedy * dt;
