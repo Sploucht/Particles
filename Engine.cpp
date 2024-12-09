@@ -1,5 +1,21 @@
 #include "Engine.h"
-
+//Helper function to update a range of particles
+void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
+{
+	for (size_t i = start; i < end && i < m_particles.size();)
+		{
+			if(m_particles[i].getTTL() > 0.0)
+			{
+				m_particles[i].update(dtAsSeconds, timestop);
+				i++
+			}
+			else
+			{
+				lock_guard<mutex> lock(particles_mutex);
+				m_particles.erase(m_particles.begin() + i);
+			}
+		}
+}
 void Engine::input()
 {
 	Event event;
@@ -57,17 +73,31 @@ void Engine::input()
 
 void Engine::update(float dtAsSeconds)
 {
-	for (int i = 0; i < m_particles.size();)
+	const size_t particle_count = m_particles.size();
+	if (particle_count == 0) return;
+
+	//Determine number of threads based on hardware and particle count
+	unsigned int thread_count = thread::hardware_concurrency();
+	//if you have 8 cpu threads and 250 particles: min(8, (250 + 99)/100) = min(8, 3) = 3 threads
+	thread_count = min(thread_count, (unsigned int)((particle_count + 90) / 100));	
+	thread_count = max(thread_count, 1u);	//ensures having at least 1 thread
+
+	vector<thread> threads;
+	const size_t batch_size = particle_count / thread_count;
+
+	//Create threads to  update particles in parallel
+	for (unsigned int i = 0; i < thread_count; i++)
 	{
-		if (m_particles[i].getTTL() > 0.0)	// Time to Live > 0
-		{
-			m_particles[i].update(dtAsSeconds, timeStop);	// Update the particle
-			i++;
-		}
-		else
-		{
-			m_particles.erase(m_particles.begin() + i);		//Remove the particle (Don't increment i)
-		}
+		size_t start = i * batch_size;
+		//ternary operator | size_t end = (condition) ? valueIfTrue : valueIfFalse;
+		size_t end = (i == thread_count - 1) ? particle_count : (i + 1) * batch size;
+		threads.emplace_back(&Engine::updateParticleRange, this, start, end, dtAsSeconds);
+	}
+
+	//wait for all threads to complete
+	for(auto &thread : threads)
+	{
+		thread.join();
 	}
 }
 
@@ -79,10 +109,12 @@ Engine::Engine()
 void Engine::draw()
 {
 	m_Window.clear();
-	for (Particle P : m_particles)	//loop through each particle 
-					//(pass by reference will be better if we have a lot of particles)
 	{
-		m_Window.draw(P);	//pass each element into m_window
+		lock_guard<mutex> lock(particles_mutex);
+		for (const Particle& P : m_particles)	//loop through each particle
+		{
+			m_Window.draw(P);	//pass each element into m_window
+		}
 	}
 	m_Window.display();	
 }
