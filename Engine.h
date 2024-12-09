@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/System/Time.hpp>
-#include <SFML/System/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
 #include "Particle.h"
 using namespace sf;
 using namespace std;
