@@ -131,6 +131,7 @@ void Engine::draw()
 			MoveSprite();
 			m_Window.draw(sprite);
 		}
+		loadText(text);
 	}
 	m_Window.display();	
 }
@@ -139,7 +140,7 @@ void Engine::loadText(Text& text)
 {
 	stringstream ss;
 	ss << "Particles" << endl;
-	//ss << "FPS : " << Framerate << endl;
+	ss << "FPS : " << getFramerate() << endl;
 	text.setString(ss.str());
 }
 
@@ -152,7 +153,7 @@ void Engine::run()
 	Clock clock;
 	while (m_Window.isOpen())
 	{
-		float Framerate = 1.f / Clock.GetElapsedTime();	//FPS
+		m_framerate = 1.f / Clock.GetElapsedTime();	//FPS
 		float dt = clock.getElapsedTime().asSeconds();
 		clock.restart();
 		input();
