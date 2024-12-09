@@ -100,7 +100,7 @@ void Engine::update(float dtAsSeconds)
 	{
 		size_t start = i * batch_size;
 		//ternary operator | size_t end = (condition) ? valueIfTrue : valueIfFalse;
-		size_t end = (i == thread_count - 1) ? particle_count : (i + 1) * batch size;
+		size_t end = (i == thread_count - 1) ? particle_count : (i + 1) * batch_size;
 		threads.emplace_back(&Engine::updateParticleRange, this, start, end, dtAsSeconds);
 	}
 
