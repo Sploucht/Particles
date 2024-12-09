@@ -16,6 +16,13 @@ void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 			}
 		}
 }
+void Engine::Sprite()
+{
+	Texture texture;
+	texture.loadFromFile("Mario.png");
+	sprite.setTexture(texture);
+	sprite.setPosition(Vector2f(1600, 800));
+}
 void Engine::input()
 {
 	Event event;
