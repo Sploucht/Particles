@@ -43,12 +43,7 @@ void Engine::input()
 					original.y = event.mouseButton.y;
 					m_particles.push_back(Particle(m_Window, rand() % 50 + 25, Vector2i(event.mouseButton.x, event.mouseButton.y)));
 				}
-				if (event.mouseButton.button == sf::Mouse::Left && m_particles.size() == 1)
-				{
-					m_particles[0].setSpeed(original - Vector2f(event.mouseButton.x, event.mouseButton.y));
-					timeStop = false;
-					cout << original.x - event.mouseButton.x << endl;
-				}
+				
 				
 			}
 		}
