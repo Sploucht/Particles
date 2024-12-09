@@ -49,12 +49,6 @@ void Engine::input()
 		}
 		if(Game == 2)
 		{
-			sf::Texture texture;
-			texture.loadFromFile("Mario.png");
-			sf::Sprite sprite;
-			sprite.setTexture(texture);
-			static Vector2f original;
-			sprite.setPosition(Vector2f(1600, 800));
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				if (event.mouseButton.button == sf::Mouse::Left && m_particles.size() == 0)
