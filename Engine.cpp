@@ -46,6 +46,7 @@ void Engine::input()
 					{
 						m_particles[0].setSpeed(original - Vector2f(event.mouseButton.x, event.mouseButton.y));
 						timeStop = false;
+						cout << "1" << endl;
 					}
 				}
 				
