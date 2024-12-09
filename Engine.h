@@ -1,5 +1,8 @@
 #pragma once
 #pragma once
+#include <thread>
+#include <mutex>
+#include <atomic>
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/System/Time.hpp>
