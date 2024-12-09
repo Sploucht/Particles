@@ -16,7 +16,7 @@ void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 			}
 		}
 }
-void Engine::Sprite()
+void Engine::MakeSprite()
 {
 	Texture texture;
 	texture.loadFromFile("Mario.png");
@@ -25,6 +25,7 @@ void Engine::Sprite()
 }
 void Engine::input()
 {
+	MakeSprite();
 	Event event;
 	while (m_Window.pollEvent(event))
 	{
