@@ -18,9 +18,10 @@ private:
 
 	//vector for Particles
 	vector<Particle> m_particles;
-	bool timeStop = false;
-	int Game = 0;
+	atomic<bool> timeStop{false};
+	atomic<int> Game{0};
 	// Private functions for internal use only
+	void updateParticleRange(size_t start, size_t end, float dtAsSeconds);
 	void input();
 	void update(float dtAsSeconds);
 	void draw();
