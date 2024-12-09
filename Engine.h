@@ -15,7 +15,7 @@ class Engine
 private:
 	// A regular RenderWindow
 	RenderWindow m_Window;
-
+	Sprite sprite;
 	//vector for Particles
 	vector<Particle> m_particles;
 	atomic<bool> timeStop{false};
