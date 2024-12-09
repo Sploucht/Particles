@@ -89,7 +89,6 @@ void Engine::update(float dtAsSeconds)
 {
 	const size_t particle_count = m_particles.size();
 	if (particle_count == 0) return;
-	MoveSprite();
 	//Determine number of threads based on hardware and particle count
 	unsigned int thread_count = thread::hardware_concurrency();
 	//if you have 8 cpu threads and 250 particles: min(8, (250 + 99)/100) = min(8, 3) = 3 threads
@@ -149,5 +148,6 @@ void Engine::run()
 		input();
 		update(dt);
 		draw();
+		MoveSprite();
 	}
 }
