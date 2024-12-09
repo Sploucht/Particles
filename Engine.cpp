@@ -33,13 +33,12 @@ void Engine::input()
 		}
 		if(Game == 2)
 		{
-			
+			Vector2f original;
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				if (event.mouseButton.button == sf::Mouse::Left && m_particles.size() == 0)
 				{
 					timeStop = true;
-					Vector2f original;
 					original.x = event.mouseButton.x;
 					original.y = event.mouseButton.y;
 					m_particles.push_back(Particle(m_Window, rand() % 50 + 25, Vector2i(event.mouseButton.x, event.mouseButton.y)));
