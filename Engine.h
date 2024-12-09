@@ -16,6 +16,7 @@ private:
 	// A regular RenderWindow
 	RenderWindow m_Window;
 	Sprite sprite;
+	Texture texture;
 	//vector for Particles
 	vector<Particle> m_particles;
 	mutex particles_mutex;
