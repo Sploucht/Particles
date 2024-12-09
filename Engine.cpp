@@ -114,6 +114,12 @@ void Engine::update(float dtAsSeconds)
 
 Engine::Engine()
 {
+	Font font;
+	Text text;
+	font.loadFromFile("ARIAL.TTF");
+	text.setFont(font);
+	text.setCharacterSize(24);
+	text.setFillColor(Color::Black);
 	m_Window.create(VideoMode::getDesktopMode(), "Particals", Style::Default);
 }
 
