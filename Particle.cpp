@@ -58,10 +58,13 @@ void Particle::update(float dt, bool timeStop)
 		m_ttl -= dt;
 		rotate(dt * m_radiansPerSec);
 		scale(SCALE);
-		float dx = m_vx * dt * m_speedx; 
+		float dx;
 		float dy;
+		m_vx -= m_speedy * dt;
+		dx = m_vx * dt;
 		m_vy -= G * dt;
-		dy = m_vy * dt * m_speedy;
+		m_vy -= m_speedy * dt;
+		dy = m_vy * dt;
 		translate(dx, dy);
 	}
 	
