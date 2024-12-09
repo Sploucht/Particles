@@ -34,8 +34,8 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 }
 void Particle::setSpeed(Vector2f Speed)
 {
-	m_vx = Speed.x;
-	m_vy = -Speed.y;
+	m_vx = Speed.x * 5;
+	m_vy = -Speed.y * 5;
         
 	cout << Speed.x << ", " << Speed.y << endl;
 }
