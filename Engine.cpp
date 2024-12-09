@@ -115,7 +115,6 @@ void Engine::draw()
 		{
 			m_Window.draw(P);	//pass each element into m_window
 		}
-		m_Window.draw(sprite);
 	}
 	m_Window.display();	
 }
