@@ -60,10 +60,13 @@ void Particle::update(float dt, bool timeStop)
 		scale(SCALE);
 		float dx;
 		float dy;
-		m_vx -= m_speedx * dt;
+		if (m_ttl < 0.5)
+		{
+			m_vx -= m_speedx * dt;
+			m_vy -= m_speedy * dt;
+		}
 		dx = m_vx * dt;
 		m_vy -= G * dt;
-		m_vy -= m_speedy * dt;
 		dy = m_vy * dt;
 		translate(dx, dy);
 	}
