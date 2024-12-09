@@ -32,6 +32,11 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 		theta += dTheta;
 	}
 }
+void Particle::setSpeed(Vector2f Speed)
+{
+	m_speedx = speed.x;
+	m_speedy = speed.y;
+}
 void Particle::draw(RenderTarget& target, RenderStates states) const 
 {
 	VertexArray lines(sf::TriangleFan, m_numPoints + 1);
@@ -53,10 +58,10 @@ void Particle::update(float dt, bool timeStop)
 		m_ttl -= dt;
 		rotate(dt * m_radiansPerSec);
 		scale(SCALE);
-		float dx = m_vx * dt;
+		float dx = m_vx * dt * m_speedx; 
 		float dy;
 		m_vy -= G * dt;
-		dy = m_vy * dt;
+		dy = m_vy * dt * m_speedy;
 		translate(dx, dy);
 	}
 	
