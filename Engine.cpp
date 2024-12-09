@@ -49,7 +49,12 @@ void Engine::input()
 		}
 		if(Game == 2)
 		{
+			sf::Texture texture;
+			texture.loadFromFile("Mario.png");
+			sf::Sprite sprite;
+			sprite.setTexture(texture);
 			static Vector2f original;
+			sprite.setPosition(Vector2f(1600, 800));
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				if (event.mouseButton.button == sf::Mouse::Left && m_particles.size() == 0)
@@ -116,6 +121,7 @@ void Engine::draw()
 		{
 			m_Window.draw(P);	//pass each element into m_window
 		}
+		m_Window.draw(sprite);
 	}
 	m_Window.display();	
 }
