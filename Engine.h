@@ -32,6 +32,7 @@ public:
 	// The Engine constructor
 	Engine();
 	void MakeSprite();
+	void MoveSprite();
 	// Run will call all the private functions
 	void run();
 
