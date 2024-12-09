@@ -31,6 +31,7 @@ private:
 	atomic<int> Game{0};
 	// Private functions for internal use only
 	void updateParticleRange(size_t start, size_t end, float dtAsSeconds);
+	void loadText(Text& text);
 	void input();
 	void update(float dtAsSeconds);
 	void draw();
