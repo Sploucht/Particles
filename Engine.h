@@ -29,7 +29,7 @@ private:
 public:
 	// The Engine constructor
 	Engine();
-	vouid MakeSprite();
+	void MakeSprite();
 	// Run will call all the private functions
 	void run();
 
