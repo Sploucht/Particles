@@ -114,7 +114,6 @@ void Engine::update(float dtAsSeconds)
 
 Engine::Engine()
 {
-	Font font;
 	//Text text;
 	font.loadFromFile("ARIAL.TTF");
 	text.setFont(font);
@@ -145,7 +144,7 @@ void Engine::draw()
 
 void Engine::loadText(Text& text)
 {
-	font.loadFromFile("ARIAL.TTF");
+	
 	stringstream ss;
 	ss << "Particles" << endl;
 	ss << "FPS : " << getFramerate() << endl;
