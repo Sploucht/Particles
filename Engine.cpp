@@ -29,7 +29,6 @@ void Engine::MoveSprite(float dt)
 }
 void Engine::input()
 {
-	MakeSprite();
 	Event event;
 	while (m_Window.pollEvent(event))
 	{
@@ -113,6 +112,7 @@ void Engine::update(float dtAsSeconds)
 
 Engine::Engine()
 {
+	MakeSprite();
 	//Text text;
 	font.loadFromFile("ARIAL.TTF");
 	text.setFont(font);
