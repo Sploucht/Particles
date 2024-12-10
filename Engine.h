@@ -40,7 +40,7 @@ public:
 	Engine();
 	float getFramerate() {return m_framerate;}
 	void MakeSprite();
-	void MoveSprite();
+	void MoveSprite(float dt);
 	// Run will call all the private functions
 	void run();
 
