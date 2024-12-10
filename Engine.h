@@ -15,6 +15,7 @@ using namespace std;
 class Engine
 {
 private:
+	bool hit = false;
 	//Text
 	Text text;
 	Font font;
