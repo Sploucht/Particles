@@ -22,7 +22,7 @@ void Engine::MakeNoise()
 	sound.setBuffer(buffer);
 }
 void Engine::MakeSprite()
-
+{
 	texture.loadFromFile("Mario.png");
 	sprite.setTexture(texture);
 	sprite.setPosition(Vector2f(1600, 500));
