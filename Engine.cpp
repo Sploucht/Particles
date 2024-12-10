@@ -16,6 +16,11 @@ void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 			}
 		}
 }
+void Engine::MakeNoise()
+{
+	buffer.loadFromFile("MarioFall.wav");
+	sound.setBuffer(buffer);
+}
 void Engine::MakeSprite()
 {
 	texture.loadFromFile("Mario.png");
@@ -144,6 +149,7 @@ void Engine::update(float dtAsSeconds)
 
 Engine::Engine()
 {
+	MakeNoise();
 	MakeSprite();
 	//Text text;
 	font.loadFromFile("ARIAL.TTF");
@@ -198,5 +204,6 @@ void Engine::run()
 		update(dt);
 		MoveSprite(dt);
 		draw();
+		if(hit) sound.play()
 	}
 }
