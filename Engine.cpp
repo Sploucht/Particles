@@ -22,11 +22,10 @@ void Engine::MakeSprite()
 	sprite.setTexture(texture);
 	sprite.setPosition(Vector2f(1600, 500));
 }
-void Engine::MoveSprite()
+void Engine::MoveSprite(float dt)
 {
-	
-	int MoveFactor = 100;
-	sprite.move(0, MoveFactor);
+	int MoveFactor = 1000;
+	sprite.move(0, MoveFactor * dt);
 }
 void Engine::input()
 {
@@ -133,7 +132,6 @@ void Engine::draw()
 		}
 		if (Game == 2) 
 		{
-			MoveSprite();
 			m_Window.draw(sprite);
 		}
 		loadText(text);
@@ -165,6 +163,7 @@ void Engine::run()
 		clock.restart();
 		input();
 		update(dt);
+		MoveSprite(dt);
 		draw();
 	}
 }
