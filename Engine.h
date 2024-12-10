@@ -19,6 +19,7 @@ private:
 	bool hit = false;
 	SoundBuffer buffer;
 	Sound sound;
+	RectangleShape GameRect;
 	//Text
 	Text text;
 	float TimePart = 1;
@@ -42,6 +43,7 @@ private:
 	void update(float dtAsSeconds);
 	void draw();
 	void MakeNoise();
+	void Game3Part(float dt);
 
 public:
 	// The Engine constructor
