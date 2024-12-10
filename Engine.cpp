@@ -75,7 +75,11 @@ void Engine::input()
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num1 && Game == 0) Game = 1; 
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num2 && Game == 0) Game = 2; 
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num3 && Game == 0) Game = 3; 
-		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 3) Game = 0; 
+		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 3) 
+		{
+			Game = 0; 
+			count = 0;
+		}
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 0) event.type = Event::Closed; 
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 2)
 		{
@@ -253,6 +257,7 @@ void Engine::loadText(Text& text)
 	ss << "Thread Count: " << getThreadCount() << endl;
 	if(Game == 3)
 	{
+		ss << "Press ESC to exit to game select" << endl;
 		ss << "Move Mouse to move Rectangle" << endl;
 		ss << "Catch as many Particles as you can" << endl;
 		ss << "Game Score: " << count << endl;
@@ -260,6 +265,7 @@ void Engine::loadText(Text& text)
 	if(Game == 0)
 	{
 		ss << "Press 1 for Particle Creation \n Press 2 for Hit the Mario \n Press ESC to Exit" << endl;
+		ss << "Press 3 for Catch the Particle" << endl;
 	}
 	if(Game == 1)
 	{
