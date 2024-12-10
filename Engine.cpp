@@ -45,6 +45,11 @@ void Engine::MoveSprite(float dt)
 	        m_particles.erase(m_particles.begin()); 
 		hit = true;
 	}
+	if (hit && !soundPlayed)  
+    	{
+        	sound.play();
+        	soundPlayed = true; 
+	}
 	if(hit)
 	{
 		sprite.move(0, 500 * dt);  
@@ -204,6 +209,5 @@ void Engine::run()
 		update(dt);
 		MoveSprite(dt);
 		draw();
-		if(hit) sound.play();
 	}
 }
