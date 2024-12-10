@@ -238,6 +238,10 @@ void Engine::loadText(Text& text)
 	ss << "Thread Count: " << getThreadCount() << endl;
 	if(Game == 0)
 	{
+		ss << "Mouse Pos " << GameRect.getPosition() << endl;
+	}
+	if(Game == 0)
+	{
 		ss << "Press 1 for Particle Creation \n Press 2 for Hit the Mario \n Press ESC to Exit" << endl;
 	}
 	if(Game == 1)
