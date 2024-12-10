@@ -2,19 +2,22 @@
 //Helper function to update a range of particles
 void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 {
-	for (size_t i = start; i < end && i < m_particles.size();)
+	while (start < end)
+	{
+		lock_guard<mutex> lock(particles_mutex);//Lock for each access
+		if (start >= m_particles.size()) break; //Check bounds
+		
+		if (m_particles[start].getTTL() > 0.0)
 		{
-			if(m_particles[i].getTTL() > 0.0)
-			{
-				m_particles[i].update(dtAsSeconds, timeStop);
-				i++;
-			}
-			else
-			{
-				lock_guard<mutex> lock(particles_mutex);
-				m_particles.erase(m_particles.begin() + i);
-			}
+			m_particles[start].update(dtAsSeconds, timeStop);
+			start++
 		}
+		else
+		{
+			m_particles.erase(m_particles.begin() + start);
+			end--; //Adjust end since we removed an element
+		}
+	}
 }
 void Engine::MakeNoise()
 {
