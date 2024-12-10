@@ -23,6 +23,10 @@ void Engine::MakeNoise()
 }
 void Engine::MakeSprite()
 {
+	GameRect.setSize(sf::Vector2f(100, 20));
+	GameRect.setOutlineColor(sf::Color::Red);
+	GameRect.setOutlineThickness(5);
+	GameRect.setPosition(1000, 400);
 	texture.loadFromFile("Mario.png");
 	sprite.setTexture(texture);
 	sprite.setPosition(Vector2f(1600, 700));
@@ -92,7 +96,7 @@ void Engine::input()
 			{
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
-					const size_t MAX_PARTICLES = 95;	//Change this limit if needed
+					const size_t MAX_PARTICLES = 1000;	//Change this limit if needed
 					if (m_particles.size() < MAX_PARTICLES)
 					{	
 						//Pass the x,y coords to particles
@@ -125,7 +129,7 @@ void Engine::input()
 					original.y = event.mouseButton.y;
 					m_particles.push_back(Particle(m_Window, rand() % 50 + 25, Vector2i(event.mouseButton.x, event.mouseButton.y)));
 				}
-				if (event.mouseButton.button == sf::Mouse::Right)
+				if (event.mouseButton.button == sf::Mouse::Right && m_particles.size() == 1)
 				{
 					m_particles[0].setSpeed(original - Vector2f(event.mouseButton.x, event.mouseButton.y));
 					timeStop = false;
@@ -133,10 +137,32 @@ void Engine::input()
 				
 			}
 		}
+		if(Game == 3)
+		{
+			Game3Part();
+			if (event.type == sf::Event::MouseMoved)
+			{
+				GameRect.setPosition(Vector2f(event.mouseMove.x, 400));
+			}
+		}	
 	}
 }
 
-//Update handles multithreading and evenly assigns all particles to threads
+void Engine::Game3Part(float dt)
+{
+	Vector2i PartRand;
+	PartRand.x = rand() % 300 + 1200;
+	PartRand.y = 200;
+	TimePart -= dt;
+	if (TimePart < 0) 
+	{
+		for(int i = 0; i < 5; i++)
+		{
+			m_particles.push_back(Particle(m_Window, rand() % 50 + 25, PartRand));
+		}
+		TimePart = 1;
+	}
+}
 void Engine::update(float dtAsSeconds)
 {
 	const size_t particle_count = m_particles.size();
@@ -192,6 +218,10 @@ void Engine::draw()
 		{
 			m_Window.draw(sprite);
 		}
+		if (Game == 3)
+		{
+			m_Window.draw(GameRect);
+		}
 		loadText(text);
 		m_Window.draw(text);
 	}
@@ -219,7 +249,7 @@ void Engine::loadText(Text& text)
 	}
 	if(Game == 2 && !hit) 
 	{
-		ss << "Press ESC to exit to game select \n Left Click to make Particle \n Right Click to throw Particle \n You win if you hit Mario" << endl;
+		ss << "Press ESC to exit to game select \n Left Click to make Particle \n Right Click to throw Particle \n You win if you his Mario" << endl;
 	}
 	text.setString(ss.str());
 }
@@ -239,6 +269,7 @@ void Engine::run()
 		input();
 		update(dt);
 		MoveSprite(dt);
+		Game3Part(float dt);
 		draw();
 	}
 }
