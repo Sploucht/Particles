@@ -139,7 +139,6 @@ void Engine::input()
 		}
 		if(Game == 3)
 		{
-			Game3Part();
 			if (event.type == sf::Event::MouseMoved)
 			{
 				GameRect.setPosition(Vector2f(event.mouseMove.x, 400));
