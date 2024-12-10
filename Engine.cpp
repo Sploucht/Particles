@@ -104,7 +104,7 @@ void Engine::input()
 					if (m_particles.size() < MAX_PARTICLES)
 					{	
 						//Pass the x,y coords to particles
-						for(int i = 0; i < 5; i++)
+						for(int i = 0; i < 20; i++)
 						{
 							m_particles.push_back(Particle(m_Window,
 								rand() % 50 + 25,
@@ -249,7 +249,7 @@ void Engine::loadText(Text& text)
 	}
 	if(Game == 1)
 	{
-		ss << "Press ESC to exit to game select \n Left click to make 5 Particles \n Press Spacebar to stop time" << endl;
+		ss << "Press ESC to exit to game select \n Left click to make 20 Particles \n Press Spacebar to stop time" << endl;
 	}
 	if(Game == 2 && hit) 
 	{
