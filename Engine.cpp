@@ -224,6 +224,6 @@ void Engine::run()
 		update(dt);
 		MoveSprite(dt);
 		draw();
-		if(Game = 2) music.play();
+		if(Game == 2) music.play();
 	}
 }
