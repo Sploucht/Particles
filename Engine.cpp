@@ -73,11 +73,17 @@ void Engine::input()
 			{
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
-					//TODO : Create loop to construct ~5 particles
-					//Pass the x,y coords to particles
-					for(int i = 0; i < 5; i++)
-					{
-						m_particles.push_back(Particle(m_Window, rand() % 50 + 25, Vector2i(event.mouseButton.x, event.mouseButton.y)));
+					const size_t MAX_PARTICLES = 1000;	//Change this limit if needed
+					if (m_particles.size() < MAX_PARTICLES)
+					{	
+						//Pass the x,y coords to particles
+						for(int i = 0; i < 5; i++)
+						{
+							m_particles.push_back(Particle(m_Window,
+								rand() % 50 + 25,
+								Vector2i(static_cast<int>(event.mouseButton.x),
+										static_cast<int>(event.mouseButton.y))));
+						}
 					}
 				}
 			}
