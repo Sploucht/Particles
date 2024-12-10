@@ -24,8 +24,18 @@ void Engine::MakeSprite()
 }
 void Engine::MoveSprite(float dt)
 {
-	int MoveFactor = 10;
-	sprite.move(0, MoveFactor * dt);
+	if(SpriteY > 200) 
+	{
+		sprite.move(0, 50 * dt);
+		SpriteY -= 50 * dt;
+	}
+	if(SpriteY < 800) 
+	{
+		sprite.move(0, - 50 * dt);
+		SpriteY += 50 * dt;
+	}
+	
+	
 }
 void Engine::input()
 {
