@@ -19,8 +19,6 @@ private:
 	bool hit = false;
 	SoundBuffer buffer;
 	Sound sound;
-	Texture BackText;
-	Sprite Backround;
 	//Text
 	Text text;
 	Font font;
