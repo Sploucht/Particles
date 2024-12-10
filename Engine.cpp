@@ -203,10 +203,12 @@ void Engine::draw()
 {
 	m_Window.clear();
 	{
+		/*
 		if(Game == 0) m_Window.draw(Start);
 		if(Game == 1) m_Window.draw(Game1);
 		if(Game == 2 && hit) m_Window.draw(Win);
 		if(Game == 2 && !hit) m_Window.draw(Game2);
+		*/
 		lock_guard<mutex> lock(particles_mutex);
 		for (const Particle& P : m_particles)	//loop through each particle
 		{
