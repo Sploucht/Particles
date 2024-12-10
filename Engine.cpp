@@ -231,6 +231,10 @@ void Engine::loadText(Text& text)
 	ss << "Particles" << endl;
 	ss << "FPS : " << getFramerate() << endl;
 	ss << "Particle Count: " << m_particles.size() << endl;
+	if(Game == 0)
+	{
+		ss << "Press 1 for Particle Creation \n Press 2 for Hit the Mario \n Press ESC to Exit" << endl;
+	}
 	text.setString(ss.str());
 }
 
