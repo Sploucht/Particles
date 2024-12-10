@@ -238,7 +238,7 @@ void Engine::loadText(Text& text)
 	ss << "Thread Count: " << getThreadCount() << endl;
 	if(Game == 0)
 	{
-		ss << "Mouse Pos " << GameRect.getPosition() << endl;
+		ss << "Mouse Pos " << GameRect.getPosition().x << ", " << GameRect.getPosition().y << endl;
 	}
 	if(Game == 0)
 	{
