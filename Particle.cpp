@@ -32,6 +32,10 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 		theta += dTheta;
 	}
 }
+Vector2f Particle::GetCenterCoord()
+{
+	return m_centerCoordinate;
+}
 void Particle::setSpeed(Vector2f Speed)
 {
 	m_vx = Speed.x * 2.5;
