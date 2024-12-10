@@ -92,7 +92,7 @@ void Engine::input()
 			{
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
-					const size_t MAX_PARTICLES = 1000;	//Change this limit if needed
+					const size_t MAX_PARTICLES = 95;	//Change this limit if needed
 					if (m_particles.size() < MAX_PARTICLES)
 					{	
 						//Pass the x,y coords to particles
