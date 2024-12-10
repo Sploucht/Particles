@@ -75,7 +75,7 @@ void Engine::input()
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 2)
 		{
 			Game = 0; 
-			sprite.setPosition(Vector2f(1600, 500));
+			sprite.setPosition(Vector2f(1600, 700));
 			hit = false;
 			soundPlayed = false; 
 		} 
