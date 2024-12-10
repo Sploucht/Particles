@@ -269,7 +269,7 @@ void Engine::run()
 		input();
 		update(dt);
 		MoveSprite(dt);
-		Game3Part(float dt);
+		Game3Part(dt);
 		draw();
 	}
 }
