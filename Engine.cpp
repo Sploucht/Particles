@@ -174,7 +174,7 @@ Engine::Engine()
 	text.setFont(font);
 	text.setCharacterSize(24);
 	text.setFillColor(Color::White);
-	Win.setFont(font);
+	/*Win.setFont(font);
 	Win.setString("YOU WIN \n Press ESC to go back to game select \n Press R to play again");
 	Win.setCharacterSize(40);
 	Win.setFillColor(Color::White);
@@ -194,7 +194,9 @@ Engine::Engine()
 	Game2.setCharacterSize(24);
 	Game2.setFillColor(Color::White);
 	Game2.setPosition(0, 100);
+	*/
 	m_Window.create(VideoMode::getDesktopMode(), "Particals", Style::Default);
+	
 }
 
 void Engine::draw()
