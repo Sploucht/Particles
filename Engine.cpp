@@ -180,6 +180,7 @@ void Engine::loadText(Text& text)
 	stringstream ss;
 	ss << "Particles" << endl;
 	ss << "FPS : " << getFramerate() << endl;
+	ss << "Particle Count: " << m_particles.size() << endl;
 	text.setString(ss.str());
 }
 
