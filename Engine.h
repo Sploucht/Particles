@@ -16,6 +16,8 @@ class Engine
 {
 private:
 	bool hit = false;
+	SoundBuffer buffer;
+	Sound sound;
 	//Text
 	Text text;
 	Font font;
@@ -37,6 +39,7 @@ private:
 	void input();
 	void update(float dtAsSeconds);
 	void draw();
+	void MakeNoise();
 
 public:
 	// The Engine constructor
