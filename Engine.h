@@ -24,7 +24,7 @@ private:
 	RenderWindow m_Window;
 	Sprite sprite;
 	Texture texture;
-	int SpriteNeg
+	int SpriteNeg = 1;
 	//vector for Particles
 	vector<Particle> m_particles;
 	mutex particles_mutex;
