@@ -158,6 +158,8 @@ void Engine::Game3Part(float dt)
 	PartPos3.x = 0.0;
 	PartPos3.y = 0.0;
 	FloatRect RectBounds = GameRect.getGlobalBounds();
+	RectBounds.left -= 50;
+	RectBounds.right += 50;
 	if (TimePart < 0) 
 	{
 		for(int i = 0; i < 5; i++)
