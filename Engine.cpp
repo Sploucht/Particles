@@ -24,7 +24,7 @@ void Engine::MakeSprite()
 }
 void Engine::MoveSprite(float dt)
 {
-	const float moveSpeed = 50.0;
+	const float moveSpeed = 200.0;
 	if(SpriteY > 800) SpriteNeg = 1;
 	if(SpriteY < 200) SpriteNeg = -1;
 	sprite.move(0, moveSpeed * dt * SpriteNeg);  
