@@ -36,6 +36,10 @@ Vector2f Particle::GetCenterCoord()
 {
 	return m_centerCoordinate;
 }
+View Particle::GetCartPlane()
+{
+	return m_cartesianPlane;
+}
 void Particle::setSpeed(Vector2f Speed)
 {
 	m_vx = Speed.x * 2.5;
