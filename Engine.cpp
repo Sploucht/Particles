@@ -251,7 +251,9 @@ void Engine::loadText(Text& text)
 	ss << "Thread Count: " << getThreadCount() << endl;
 	if(Game == 3)
 	{
-		ss << "Mouse Pos " << GameRect.getPosition().x << ", " << GameRect.getPosition().y << endl;
+		ss << "Move Mouse to move Rectangle" << endl;
+		ss << "Catch as many Particles as you can" << endl;
+		ss << "Game Score: " << count << endl;
 	}
 	if(Game == 0)
 	{
