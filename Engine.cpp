@@ -31,7 +31,7 @@ void Engine::MoveSprite(float dt)
 	if (m_particles.size() == 1)
 	{
 		PartPos = Vector2f(m_Window.mapCoordsToPixel(m_particles[0].GetCenterCoord(), m_particles[0].GetCartPlane()));
-		cout << PartPos.x << ", " << PartPos.y << endl;
+		cout << PartPos.x << ", " << PartPos.y << ", " << SpriteY << endl;
 	}
 	if(PartPos.x > 1580.0 && PartPos.x < 1620.0 && PartPos.y < SpriteY - 300 && PartPos.y > SpriteY)
 	{
