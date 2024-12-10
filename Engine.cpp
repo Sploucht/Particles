@@ -43,6 +43,7 @@ void Engine::MoveSprite(float dt)
 	if(hit)
 	{
 		sprite.move(0, 500 * dt);  
+		SpriteY -= 500 * dt;
 	}
 	if(SpriteY < 0) Game = 0;
 	else
