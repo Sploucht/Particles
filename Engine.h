@@ -15,6 +15,7 @@ using namespace std;
 class Engine
 {
 private:
+	bool soundPlayed = false;
 	bool hit = false;
 	SoundBuffer buffer;
 	Sound sound;
