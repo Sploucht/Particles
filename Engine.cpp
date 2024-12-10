@@ -174,6 +174,26 @@ Engine::Engine()
 	text.setFont(font);
 	text.setCharacterSize(24);
 	text.setFillColor(Color::White);
+	Win.setFont(font);
+	Win.setString("YOU WIN \n Press ESC to go back to game select \n Press R to play again");
+	Win.setCharacterSize(40);
+	Win.setFillColor(Color::White);
+	Win.setPosition(0, 100);
+	Start.setFont(font);
+	Start.setString("Press 1 for Particle Creation \n Press 2 for Hit the Mario \n Press ESC to Exit");
+	Start.setCharacterSize(24);
+	Start.setFillColor(Color::White);
+	Start.setPosition(0, 100);
+	Game1.setFont(font);
+	Game1.setString("Press ESC to exit to game select \n Left click to make 5 Particles \n Press Spacebar to stop time");
+	Game1.setCharacterSize(24);
+	Game1.setFillColor(Color::White);
+	Game1.setPosition(0, 100);
+	Game2.setFont(font);
+	Game2.setString("Press ESC to exit to game select \n Left Click to make Particle \n Right Click to throw Particle \n You win if you his Mario");
+	Game2.setCharacterSize(24);
+	Game2.setFillColor(Color::White);
+	Game2.setPosition(0, 100);
 	m_Window.create(VideoMode::getDesktopMode(), "Particals", Style::Default);
 }
 
@@ -181,7 +201,10 @@ void Engine::draw()
 {
 	m_Window.clear();
 	{
-		
+		if(Game == 0) m_Window.draw(Start);
+		if(Game == 1) m_Window.draw(Game1);
+		if(Game == 2 && hit) m_Window.draw(Win);
+		if(Game == 2 && !hit) m_Window.draw(Game2);
 		lock_guard<mutex> lock(particles_mutex);
 		for (const Particle& P : m_particles)	//loop through each particle
 		{
