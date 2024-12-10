@@ -21,7 +21,7 @@ private:
 	Sound sound;
 	//Text
 	Text text;
-
+	float TimePart = 1;
 	Font font;
 	float SpriteY = 500;
 	// A regular RenderWindow
