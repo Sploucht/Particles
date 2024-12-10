@@ -2,22 +2,19 @@
 //Helper function to update a range of particles
 void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 {
-	while (start < end)
-	{
-		lock_guard<mutex> lock(particles_mutex);//Lock for each access
-		if (start >= m_particles.size()) break; //Check bounds
-		
-		if (m_particles[start].getTTL() > 0.0)
+	for (size_t i = start; i < end && i < m_particles.size();)
 		{
-			m_particles[start].update(dtAsSeconds, timeStop);
-			start++;
+			if(m_particles[i].getTTL() > 0.0)
+			{
+				m_particles[i].update(dtAsSeconds, timeStop);
+				i++;
+			}
+			else
+			{
+				lock_guard<mutex> lock(particles_mutex);
+				m_particles.erase(m_particles.begin() + i);
+			}
 		}
-		else
-		{
-			m_particles.erase(m_particles.begin() + start);
-			end--; //Adjust end since we removed an element
-		}
-	}
 }
 void Engine::MakeNoise()
 {
@@ -104,7 +101,7 @@ void Engine::input()
 					if (m_particles.size() < MAX_PARTICLES)
 					{	
 						//Pass the x,y coords to particles
-						for(int i = 0; i < 20; i++)
+						for(int i = 0; i < 5; i++)
 						{
 							m_particles.push_back(Particle(m_Window,
 								rand() % 50 + 25,
@@ -154,9 +151,13 @@ void Engine::input()
 void Engine::Game3Part(float dt)
 {
 	Vector2i PartRand;
-	PartRand.x = rand() % 300 + 1200;
+	PartRand.x = rand() % 100 + 1000;
 	PartRand.y = 200;
 	TimePart -= dt;
+	Vector2f PartPos3;
+	PartPos3.x = 0.0;
+	PartPos3.y = 0.0;
+	FloatRect RectBounds = GameRect.getGlobalBounds();
 	if (TimePart < 0) 
 	{
 		for(int i = 0; i < 5; i++)
@@ -164,6 +165,15 @@ void Engine::Game3Part(float dt)
 			m_particles.push_back(Particle(m_Window, rand() % 50 + 25, PartRand));
 		}
 		TimePart = 1;
+	}
+	for(int i = 0; i < m_particles.size(); i++)
+	{
+		PartPos3 = Vector2f(m_Window.mapCoordsToPixel(m_particles[i].GetCenterCoord(), m_particles[i].GetCartPlane()));
+		if (spriteBounds.contains(PartPos))
+		{
+	        	m_particles.erase(m_particles.begin() + i); 
+			count++;
+		}
 	}
 }
 void Engine::update(float dtAsSeconds)
@@ -249,7 +259,7 @@ void Engine::loadText(Text& text)
 	}
 	if(Game == 1)
 	{
-		ss << "Press ESC to exit to game select \n Left click to make 20 Particles \n Press Spacebar to stop time" << endl;
+		ss << "Press ESC to exit to game select \n Left click to make 5 Particles \n Press Spacebar to stop time" << endl;
 	}
 	if(Game == 2 && hit) 
 	{
