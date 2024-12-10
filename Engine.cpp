@@ -24,18 +24,19 @@ void Engine::MakeSprite()
 }
 void Engine::MoveSprite(float dt)
 {
+	const float moveSpeed = 200.0;
+
 	if(SpriteY > 200) 
 	{
-		sprite.move(0, 50 * dt);
-		SpriteY -= 50 * dt;
-	}
-	if(SpriteY < 800) 
-	{
-		sprite.move(0, - 50 * dt);
-		SpriteY += 50 * dt;
-	}
-	
-	
+        	sprite.move(0, moveSpeed * dt);  
+        	SpriteY -= moveSpeed * dt;  
+    	}
+    	if(SpriteY < 800) 
+    	{
+        	sprite.move(0, -moveSpeed * dt);  
+        	SpriteY += moveSpeed * dt;  
+    	}
+}
 }
 void Engine::input()
 {
