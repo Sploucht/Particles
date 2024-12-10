@@ -19,7 +19,7 @@ void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 void Engine::MakeNoise()
 {
 	music.openFromFile("MarioMusic.flac");
-	music.setLoop(true);
+	music.setVolume(50);
 	buffer.loadFromFile("MarioFall.wav");
 	sound.setBuffer(buffer);
 }
