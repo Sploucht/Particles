@@ -169,7 +169,7 @@ void Engine::Game3Part(float dt)
 	for(int i = 0; i < m_particles.size(); i++)
 	{
 		PartPos3 = Vector2f(m_Window.mapCoordsToPixel(m_particles[i].GetCenterCoord(), m_particles[i].GetCartPlane()));
-		if (spriteBounds.contains(PartPos3))
+		if (RectBounds.contains(PartPos3))
 		{
 	        	m_particles.erase(m_particles.begin() + i); 
 			count++;
