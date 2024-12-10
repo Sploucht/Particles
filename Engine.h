@@ -17,6 +17,7 @@ class Engine
 private:
 	bool soundPlayed = false;
 	bool hit = false;
+	Music music;
 	SoundBuffer buffer;
 	Sound sound;
 	//Text
