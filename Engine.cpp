@@ -24,7 +24,7 @@ void Engine::MakeSprite()
 }
 void Engine::MoveSprite(float dt)
 {
-	int MoveFactor = 1000;
+	int MoveFactor = 10;
 	sprite.move(0, MoveFactor * dt);
 }
 void Engine::input()
