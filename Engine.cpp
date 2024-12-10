@@ -236,7 +236,7 @@ void Engine::loadText(Text& text)
 	ss << "FPS : " << getFramerate() << endl;
 	ss << "Particle Count: " << m_particles.size() << endl;
 	ss << "Thread Count: " << getThreadCount() << endl;
-	if(Game == 0)
+	if(Game == 3)
 	{
 		ss << "Mouse Pos " << GameRect.getPosition().x << ", " << GameRect.getPosition().y << endl;
 	}
