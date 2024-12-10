@@ -29,6 +29,7 @@ void Engine::MoveSprite(float dt)
 	if(SpriteY == 200) SpriteNeg = -1;
 	sprite.move(0, moveSpeed * dt * SpriteNeg);  
         SpriteY -= moveSpeed * dt * SpriteNeg;  
+	cout << SpriteY << endl;
 }
 
 void Engine::input()
