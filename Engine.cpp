@@ -37,7 +37,8 @@ void Engine::MoveSprite(float dt)
 	{
 		sprite.move(0, 500.0 * dt);  
 		m_particles.erase(m_particles.begin());
-		
+		PartPos.x = 0.0;
+		PartPos.y = 0.0;
 	}
 	else
 	{
