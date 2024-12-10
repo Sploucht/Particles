@@ -218,7 +218,7 @@ void Engine::loadText(Text& text)
 	}
 	if(Game == 2 && !hit) 
 	{
-		ss << "Press ESC to exit to game select \n Left Click to make Particle \n Right Click to throw Particle \n You win if you his Mario" << endl;
+		ss << "Press ESC to exit to game select \n Left Click to make Particle \n Right Click to throw Particle \n You win if you hit Mario" << endl;
 	}
 	text.setString(ss.str());
 }
