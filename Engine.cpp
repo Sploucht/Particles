@@ -10,7 +10,7 @@ void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 		if (m_particles[start].getTTL() > 0.0)
 		{
 			m_particles[start].update(dtAsSeconds, timeStop);
-			start++
+			start++;
 		}
 		else
 		{
