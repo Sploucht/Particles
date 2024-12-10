@@ -18,8 +18,6 @@ void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 }
 void Engine::MakeNoise()
 {
-	music.openFromFile("MarioMusic.flac");
-	music.setVolume(50);
 	buffer.loadFromFile("MarioFall.wav");
 	sound.setBuffer(buffer);
 }
@@ -224,6 +222,5 @@ void Engine::run()
 		update(dt);
 		MoveSprite(dt);
 		draw();
-		if(Game == 2) music.play();
 	}
 }
