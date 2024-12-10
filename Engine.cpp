@@ -22,9 +22,7 @@ void Engine::MakeNoise()
 	sound.setBuffer(buffer);
 }
 void Engine::MakeSprite()
-{
-	BackText.loadFromFile("MarioBackround.jpg");
-	Backround.setTexture(BackText);
+
 	texture.loadFromFile("Mario.png");
 	sprite.setTexture(texture);
 	sprite.setPosition(Vector2f(1600, 500));
@@ -183,7 +181,7 @@ void Engine::draw()
 {
 	m_Window.clear();
 	{
-		if(Game == 2) m_Window.draw(Backround);
+		
 		lock_guard<mutex> lock(particles_mutex);
 		for (const Particle& P : m_particles)	//loop through each particle
 		{
