@@ -33,12 +33,14 @@ void Engine::MoveSprite(float dt)
 		PartPos = Vector2f(m_Window.mapCoordsToPixel(m_particles[0].GetCenterCoord(), m_particles[0].GetCartPlane()));
 		cout << PartPos.x << ", " << PartPos.y << ", " << SpriteY << endl;
 	}
-	if(PartPos.x > 1580.0 && PartPos.x < 1620.0 && PartPos.y < SpriteY - 300 && PartPos.y > SpriteY)
+	FloatRect spriteBounds = sprite.getGlobalBounds();
+    
+   
+	if (m_particles.size() == 1 && spriteBounds.contains(PartPos))
 	{
-		sprite.move(0, 500.0 * dt);  
-		m_particles.erase(m_particles.begin());
-		PartPos.x = 0.0;
-		PartPos.y = 0.0;
+		cout << "Collision detected!" << endl;
+	        sprite.move(0, 500.0 * dt);  
+	        m_particles.erase(m_particles.begin()); 
 	}
 	else
 	{
