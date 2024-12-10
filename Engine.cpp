@@ -184,7 +184,7 @@ void Engine::update(float dtAsSeconds)
 		size_t end = (i == thread_count - 1) ? particle_count : (i + 1) * batch_size;
 		threads.emplace_back(&Engine::updateParticleRange, this, start, end, dtAsSeconds);
 	}
-
+	setThreadCount(threads.size());
 	//wait for all threads to complete
 	for(auto &thread : threads)
 	{
@@ -235,6 +235,7 @@ void Engine::loadText(Text& text)
 	ss << "Particles" << endl;
 	ss << "FPS : " << getFramerate() << endl;
 	ss << "Particle Count: " << m_particles.size() << endl;
+	ss << "Thread Count: " << getThreadCount() << endl;
 	if(Game == 0)
 	{
 		ss << "Press 1 for Particle Creation \n Press 2 for Hit the Mario \n Press ESC to Exit" << endl;
