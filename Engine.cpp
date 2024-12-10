@@ -136,6 +136,7 @@ void Engine::input()
 	}
 }
 
+//Update handles multithreading and evenly assigns all particles to threads
 void Engine::update(float dtAsSeconds)
 {
 	const size_t particle_count = m_particles.size();
