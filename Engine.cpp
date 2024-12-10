@@ -204,6 +204,6 @@ void Engine::run()
 		update(dt);
 		MoveSprite(dt);
 		draw();
-		if(hit) sound.play()
+		if(hit) sound.play();
 	}
 }
