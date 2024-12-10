@@ -32,6 +32,8 @@ void Engine::MoveSprite(float dt)
 	if(PartPos.x > 1580.0 && PartPos.x < 1620.0 && PartPos.y < SpriteY - 300 && PartPos.y > SpriteY)
 	{
 		sprite.move(0, 500.0 * dt);  
+		m_particles.erase(m_particles.begin();
+		cout << PartPos.x << ", " << PartPos.y << endl;
 	}
 	else
 	{
