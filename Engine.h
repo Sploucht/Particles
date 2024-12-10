@@ -37,6 +37,7 @@ private:
 	atomic<bool> timeStop{false};
 	atomic<int> Game{0};
 	int thread_count;
+	int count = 0;
 	// Private functions for internal use only
 	void updateParticleRange(size_t start, size_t end, float dtAsSeconds);
 	void loadText(Text& text);
