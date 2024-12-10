@@ -145,6 +145,7 @@ void Engine::draw()
 
 void Engine::loadText(Text& text)
 {
+	font.loadFromFile("ARIAL.TTF");
 	stringstream ss;
 	ss << "Particles" << endl;
 	ss << "FPS : " << getFramerate() << endl;
