@@ -26,8 +26,8 @@ void Engine::MoveSprite(float dt)
 {
 	const float moveSpeed = 200.0;
 	Vector2f PartPos;
-	PartPos.x = 0.0
-	PartPos.y = 0.0
+	PartPos.x = 0.0;
+	PartPos.y = 0.0;
 	if (m_particles.size() == 1) PartPos = Vector2f(m_Window.mapCoordsToPixel(m_particles[0].GetCenterCoord(), m_particles[0].GetCartPlane()));
 	if(PartPos.x > 1580.0 && PartPos.x < 1620.0 && PartPos.y < SpriteY - 300 && PartPos.y > SpriteY)
 	{
