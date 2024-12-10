@@ -72,7 +72,14 @@ void Engine::input()
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num2 && Game == 0) Game = 2; 
 		
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 0) event.type = Event::Closed; 
-		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game != 0) Game = 0; 
+		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 2)
+		{
+			Game = 0; 
+			sprite.setPosition(Vector2f(1600, 500));
+			hit = false;
+			soundPlayed = false; 
+		} 
+		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 1) Game = 0;
 		//Close window
 		if (event.type == Event::Closed)
 		{
@@ -103,6 +110,12 @@ void Engine::input()
 		if(Game == 2)
 		{
 			static Vector2f original;
+			if (event.type == Event::KeyPressed && event.key.code == Keyboard::R)
+			{
+				sprite.setPosition(Vector2f(1600, 500));
+				hit = false;
+				soundPlayed = false; 
+			}
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				if (event.mouseButton.button == sf::Mouse::Left && m_particles.size() == 0)
