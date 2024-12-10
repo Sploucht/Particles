@@ -269,7 +269,10 @@ void Engine::run()
 		input();
 		update(dt);
 		MoveSprite(dt);
-		Game3Part(dt);
+		if(Game == 3)
+		{
+			Game3Part(dt);
+		}
 		draw();
 	}
 }
