@@ -174,7 +174,7 @@ Engine::Engine()
 	text.setFont(font);
 	text.setCharacterSize(24);
 	text.setFillColor(Color::White);
-	m_Window.create(VideoMode(1920, 1080), "Particals", Style::Default);
+	m_Window.create(VideoMode::getDesktopMode(), "Particals", Style::Default);
 	
 }
 
