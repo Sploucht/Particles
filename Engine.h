@@ -21,10 +21,11 @@ private:
 	Sound sound;
 	//Text
 	Text text;
-	Text Start;
+	/* Text Start;
 	Text Win;
 	Text Game1;
 	Text Game2;
+	*/
 	Font font;
 	float SpriteY = 500;
 	// A regular RenderWindow
