@@ -37,7 +37,7 @@ void Engine::MoveSprite(float dt)
         	SpriteY += moveSpeed * dt;  
     	}
 }
-}
+
 void Engine::input()
 {
 	Event event;
