@@ -19,6 +19,7 @@ void setSpeed(Vector2f Speed);
 bool almostEqual(double a, double b, double eps = 0.0001);
 void unitTests();
 Vector2f GetCenterCoord();
+View GetCartPlane();
 private:
 float m_ttl;
 int m_numPoints;
