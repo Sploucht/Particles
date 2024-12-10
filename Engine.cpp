@@ -29,7 +29,7 @@ void Engine::MakeSprite()
 	GameRect.setPosition(1000, 400);
 	texture.loadFromFile("Mario.png");
 	sprite.setTexture(texture);
-	sprite.setPosition(Vector2f(1600, 700));
+	sprite.setPosition(Vector2f(1600, 250));
 }
 void Engine::MoveSprite(float dt)
 {
@@ -60,8 +60,8 @@ void Engine::MoveSprite(float dt)
 	}
 	else
 	{
-		if(SpriteY > 1000) SpriteNeg = 1;
-		if(SpriteY < 400) SpriteNeg = -1;
+		if(SpriteY > 500) SpriteNeg = 1;
+		if(SpriteY < 0) SpriteNeg = -1;
 		sprite.move(0, moveSpeed * dt * SpriteNeg);  
         	SpriteY -= moveSpeed * dt * SpriteNeg; 
 	}
@@ -80,7 +80,7 @@ void Engine::input()
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 2)
 		{
 			Game = 0; 
-			sprite.setPosition(Vector2f(1600, 700));
+			sprite.setPosition(Vector2f(1600, 250));
 			hit = false;
 			soundPlayed = false; 
 		} 
@@ -117,7 +117,7 @@ void Engine::input()
 			static Vector2f original;
 			if (event.type == Event::KeyPressed && event.key.code == Keyboard::R)
 			{
-				sprite.setPosition(Vector2f(1600, 700));
+				sprite.setPosition(Vector2f(1600, 250));
 				hit = false;
 				soundPlayed = false; 
 			}
@@ -142,7 +142,7 @@ void Engine::input()
 		{
 			if (event.type == sf::Event::MouseMoved)
 			{
-				GameRect.setPosition(Vector2f(event.mouseMove.x, 400));
+				GameRect.setPosition(Vector2f(event.mouseMove.x, 650));
 			}
 		}	
 	}
