@@ -138,6 +138,7 @@ void Engine::draw()
 			m_Window.draw(sprite);
 		}
 		loadText(text);
+		m_Window.draw(text);
 	}
 	m_Window.display();	
 }
