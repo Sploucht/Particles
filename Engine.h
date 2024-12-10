@@ -18,6 +18,7 @@ private:
 	//Text
 	Text text;
 	Font font;
+	float SpriteY;
 	// A regular RenderWindow
 	float m_framerate;
 	RenderWindow m_Window;
