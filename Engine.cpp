@@ -25,12 +25,18 @@ void Engine::MakeSprite()
 void Engine::MoveSprite(float dt)
 {
 	const float moveSpeed = 200.0;
-	if(m_particles[0].x )
-	if(SpriteY > 800) SpriteNeg = 1;
-	if(SpriteY < 200) SpriteNeg = -1;
-	sprite.move(0, moveSpeed * dt * SpriteNeg);  
-        SpriteY -= moveSpeed * dt * SpriteNeg;  
-	
+	Vector2f PartPos = Vector2f(m_Window.mapCoordsToPixel(m_particles[0].GetCenterCoord(), m_particles[0].GetCartPlane());
+	if(PartPos.x > 1580.0 && PartPos.x < 1620.0 && PartPos.y < SpriteY - 300 && PartPos.y > SpriteY)
+	{
+		sprite.move(0, 500.0 * dt);  
+	}
+	else
+	{
+		if(SpriteY > 800) SpriteNeg = 1;
+		if(SpriteY < 200) SpriteNeg = -1;
+		sprite.move(0, moveSpeed * dt * SpriteNeg);  
+        	SpriteY -= moveSpeed * dt * SpriteNeg; 
+	}
 }
 
 void Engine::input()
