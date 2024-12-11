@@ -15,27 +15,24 @@ using namespace std;
 class Engine
 {
 private:
+	RenderWindow m_Window;
 	bool soundPlayed = false;
 	bool hit = false;
 	SoundBuffer buffer;
 	Sound sound;
-	RectangleShape GameRect;
-	//Text
-	Text text;
-	float TimePart = 1;
 	Font font;
-	float SpriteY = 500;
-	// A regular RenderWindow
-	float m_framerate;
-	RenderWindow m_Window;
+	Text text;
 	Sprite sprite;
 	Texture texture;
-	int SpriteNeg = 1;
-	//vector for Particles
+	RectangleShape GameRect;
 	vector<Particle> m_particles;
 	mutex particles_mutex;
 	atomic<bool> timeStop{false};
 	atomic<int> Game{0};
+	float TimePart = 1;
+	float SpriteY = 500;
+	float m_framerate;
+	int SpriteNeg = 1;
 	int thread_count;
 	int count = 0;
 	// Private functions for internal use only
@@ -55,7 +52,8 @@ public:
 	int setThreadCount(int t) {return thread_count = t;}
 	void MakeSprite();
 	void MoveSprite(float dt);
-	// Run will call all the private functions
+
+	//run() calls private functions
 	void run();
 
 };
