@@ -30,7 +30,7 @@ private:
 	atomic<bool> timeStop{false};
 	atomic<int> Game{0};
 	float TimePart = 1;
-	float SpriteY = 500;
+	float SpriteY = 250;
 	float m_framerate;
 	int SpriteNeg = 1;
 	int thread_count;
