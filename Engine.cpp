@@ -32,7 +32,7 @@ void Engine::MakeSprite()
 	GameRect.setPosition(1000, 400);
 	texture.loadFromFile("Mario.png");
 	sprite.setTexture(texture);
-	sprite.setPosition(Vector2f(1600, 250));
+	sprite.setPosition(Vector2f(1500, 250));
 }
 void Engine::MoveSprite(float dt)
 {
@@ -82,7 +82,7 @@ void Engine::input()
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 2)
 		{
 			Game = 0; 
-			sprite.setPosition(Vector2f(1600, 250));
+			sprite.setPosition(Vector2f(1500, 250));
 			hit = false;
 			soundPlayed = false; 
 		} 
@@ -124,7 +124,7 @@ void Engine::input()
 			static Vector2f original;
 			if (event.type == Event::KeyPressed && event.key.code == Keyboard::R)
 			{
-				sprite.setPosition(Vector2f(1600, 250));
+				sprite.setPosition(Vector2f(1500, 250));
 				hit = false;
 				soundPlayed = false; 
 			}
