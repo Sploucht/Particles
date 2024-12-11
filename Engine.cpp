@@ -163,7 +163,7 @@ void Engine::Game3Part(float dt)
 	PartPos3.y = 0.0;
 	FloatRect RectBounds = GameRect.getGlobalBounds();
 	RectBounds.left -= 75;
-	RectBounds.width += 75;
+	RectBounds.width += 150;
 	if (TimePart < 0) 
 	{
 		for(int i = 0; i < 5; i++)
@@ -264,7 +264,7 @@ void Engine::loadText(Text& text)
 	}
 	if(Game == 0)
 	{
-		ss << "Press 1 for Particle Creation \n Press 2 for Hit the Mario \n Press ESC to Exit" << endl;
+		ss << "Press ESC to Exit \n Press 1 for Particle Creation \n Press 2 for Hit the Mario" << endl;
 		ss << "Press 3 for Catch the Particle" << endl;
 	}
 	if(Game == 1)
