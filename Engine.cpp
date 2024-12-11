@@ -223,10 +223,9 @@ void Engine::MoveSprite(float dt)
 	}
 	else
 	{
-		if(SpriteY > 500) SpriteNeg = 1;
-		if(SpriteY < 0) SpriteNeg = -1;
+		if(sprite.getPosition().y > 500) SpriteNeg = 1;
+		if(sprite.getPosition().y < 0) SpriteNeg = -1;
 		sprite.move(0, moveSpeed * dt * SpriteNeg);  
-        	SpriteY -= moveSpeed * dt * SpriteNeg; 
 	}
 }
 
