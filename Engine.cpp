@@ -138,6 +138,7 @@ void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 {
 	while (start < end)
 	{
+		//TODO: get rid of lock_guard after implementing getting rid of expired TTL's
 		lock_guard<mutex> lock(particles_mutex);//Lock for each access
 		if (start >= m_particles.size()) break; //Check bounds
 		
@@ -146,6 +147,7 @@ void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 			m_particles[start].update(dtAsSeconds, timeStop);
 			start++;
 		}
+		//TODO: get rid of this after implementing getting rid of expired TTL's
 		else
 		{
 			m_particles.erase(m_particles.begin() + start);
@@ -181,6 +183,8 @@ void Engine::update(float dtAsSeconds)
 	{
 		thread.join();
 	}
+
+	//TODO: loop through particle array and delete expired TTL's
 }
 
 void Engine::MakeSprite()
