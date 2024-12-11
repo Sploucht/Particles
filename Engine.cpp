@@ -2,7 +2,7 @@
 //Helper function to update a range of particles
 void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 {
-		while (start < end)
+	while (start < end)
 	{
 		lock_guard<mutex> lock(particles_mutex);//Lock for each access
 		if (start >= m_particles.size()) break; //Check bounds
