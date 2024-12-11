@@ -36,13 +36,16 @@ private:
 	int thread_count;
 	int count = 0;
 	// Private functions for internal use only
-	void updateParticleRange(size_t start, size_t end, float dtAsSeconds);
 	void loadText(Text& text);
 	void input();
+	void updateParticleRange(size_t start, size_t end, float dtAsSeconds);
 	void update(float dtAsSeconds);
+	void MakeSprite();
+	void MoveSprite(float dt);
 	void draw();
 	void MakeNoise();
 	void Game3Part(float dt);
+	
 
 public:
 	// The Engine constructor
@@ -50,8 +53,7 @@ public:
 	float getFramerate() {return m_framerate;}
 	int getThreadCount() {return thread_count;}
 	int setThreadCount(int t) {return thread_count = t;}
-	void MakeSprite();
-	void MoveSprite(float dt);
+	
 
 	//run() calls private functions
 	void run();

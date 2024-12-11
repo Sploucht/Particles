@@ -1,73 +1,51 @@
 #include "Engine.h"
-//Helper function to update a range of particles
-void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
+
+Engine::Engine()
 {
-	while (start < end)
-	{
-		lock_guard<mutex> lock(particles_mutex);//Lock for each access
-		if (start >= m_particles.size()) break; //Check bounds
-		
-		if (m_particles[start].getTTL() > 0.0)
-		{
-			m_particles[start].update(dtAsSeconds, timeStop);
-			start++;
-		}
-		else
-		{
-			m_particles.erase(m_particles.begin() + start);
-			end--; //Adjust end since we removed an element
-		}
-	}
+	MakeNoise();
+	MakeSprite();
+	//Text text;
+	font.loadFromFile("ARIAL.TTF");
+	text.setFont(font);
+	text.setCharacterSize(24);
+	text.setFillColor(Color::White);
+	m_Window.create(VideoMode::getDesktopMode(), "Particals", Style::Default);
+	
 }
-void Engine::MakeNoise()
+
+void Engine::loadText(Text& text)
 {
-	buffer.loadFromFile("MarioFall.wav");
-	sound.setBuffer(buffer);
-}
-void Engine::MakeSprite()
-{
-	GameRect.setSize(sf::Vector2f(100, 20));
-	GameRect.setOutlineColor(sf::Color::Red);
-	GameRect.setOutlineThickness(5);
-	GameRect.setPosition(1000, 400);
-	texture.loadFromFile("Mario.png");
-	sprite.setTexture(texture);
-	sprite.setPosition(Vector2f(1500, 250));
-}
-void Engine::MoveSprite(float dt)
-{
-	const float moveSpeed = 200.0;
-	Vector2f PartPos;
-	PartPos.x = 0.0;
-	PartPos.y = 0.0;
-	if (m_particles.size() == 1)
+	
+	stringstream ss;
+	ss << "Particles" << endl;
+	ss << "FPS : " << getFramerate() << endl;
+	ss << "Particle Count: " << m_particles.size() << endl;
+	ss << "Thread Count: " << getThreadCount() << endl;
+	if(Game == 3)
 	{
-		PartPos = Vector2f(m_Window.mapCoordsToPixel(m_particles[0].GetCenterCoord(), m_particles[0].GetCartPlane()));
+		ss << "Press ESC to exit to game select" << endl;
+		ss << "Move Mouse to move Rectangle" << endl;
+		ss << "Catch as many Particles as you can" << endl;
+		ss << "Game Score: " << count << endl;
 	}
-	FloatRect spriteBounds = sprite.getGlobalBounds();
-    
-   
-	if (m_particles.size() == 1 && spriteBounds.contains(PartPos))
+	if(Game == 0)
 	{
-	        m_particles.erase(m_particles.begin()); 
-		hit = true;
+		ss << "Press ESC to Exit \n Press 1 for Particle Creation \n Press 2 for Hit the Mario" << endl;
+		ss << "Press 3 for Catch the Particle" << endl;
 	}
-	if (hit && !soundPlayed)  
-    	{
-        	sound.play();
-        	soundPlayed = true; 
-	}
-	if(hit)
+	if(Game == 1)
 	{
-		sprite.move(0, 500 * dt);  
+		ss << "Press ESC to exit to game select \n Left click to make 10 Particles \n Press Spacebar to stop time" << endl;
 	}
-	else
+	if(Game == 2 && hit) 
 	{
-		if(SpriteY > 500) SpriteNeg = 1;
-		if(SpriteY < 0) SpriteNeg = -1;
-		sprite.move(0, moveSpeed * dt * SpriteNeg);  
-        	SpriteY -= moveSpeed * dt * SpriteNeg; 
+		ss << "YOU WIN \n Press ESC to go back to game select \n Press R to play again" << endl;
 	}
+	if(Game == 2 && !hit) 
+	{
+		ss << "Press ESC to exit to game select \n Left Click to make Particle \n Right Click to throw Particle \n You win if you his Mario" << endl;
+	}
+	text.setString(ss.str());
 }
 
 void Engine::input()
@@ -155,36 +133,27 @@ void Engine::input()
 	}
 }
 
-void Engine::Game3Part(float dt)
+//Helper function to update a range of particles
+void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 {
-	Vector2i PartRand;
-	PartRand.x = rand() % 100 + 1000;
-	PartRand.y = 200;
-	TimePart -= dt;
-	Vector2f PartPos3;
-	PartPos3.x = 0.0;
-	PartPos3.y = 0.0;
-	FloatRect RectBounds = GameRect.getGlobalBounds();
-	RectBounds.left -= 75;
-	RectBounds.width += 150;
-	if (TimePart < 0) 
+	while (start < end)
 	{
-		for(int i = 0; i < 5; i++)
+		lock_guard<mutex> lock(particles_mutex);//Lock for each access
+		if (start >= m_particles.size()) break; //Check bounds
+		
+		if (m_particles[start].getTTL() > 0.0)
 		{
-			m_particles.push_back(Particle(m_Window, rand() % 50 + 25, PartRand));
+			m_particles[start].update(dtAsSeconds, timeStop);
+			start++;
 		}
-		TimePart = 1;
-	}
-	for(int i = 0; i < m_particles.size(); i++)
-	{
-		PartPos3 = Vector2f(m_Window.mapCoordsToPixel(m_particles[i].GetCenterCoord(), m_particles[i].GetCartPlane()));
-		if (RectBounds.contains(PartPos3))
+		else
 		{
-	        	m_particles.erase(m_particles.begin() + i); 
-			count++;
+			m_particles.erase(m_particles.begin() + start);
+			end--; //Adjust end since we removed an element
 		}
 	}
 }
+
 void Engine::update(float dtAsSeconds)
 {
 	const size_t particle_count = m_particles.size();
@@ -214,17 +183,51 @@ void Engine::update(float dtAsSeconds)
 	}
 }
 
-Engine::Engine()
+void Engine::MakeSprite()
 {
-	MakeNoise();
-	MakeSprite();
-	//Text text;
-	font.loadFromFile("ARIAL.TTF");
-	text.setFont(font);
-	text.setCharacterSize(24);
-	text.setFillColor(Color::White);
-	m_Window.create(VideoMode::getDesktopMode(), "Particals", Style::Default);
-	
+	GameRect.setSize(sf::Vector2f(100, 20));
+	GameRect.setOutlineColor(sf::Color::Red);
+	GameRect.setOutlineThickness(5);
+	GameRect.setPosition(1000, 400);
+	texture.loadFromFile("Mario.png");
+	sprite.setTexture(texture);
+	sprite.setPosition(Vector2f(1500, 250));
+}
+
+void Engine::MoveSprite(float dt)
+{
+	const float moveSpeed = 200.0;
+	Vector2f PartPos;
+	PartPos.x = 0.0;
+	PartPos.y = 0.0;
+	if (m_particles.size() == 1)
+	{
+		PartPos = Vector2f(m_Window.mapCoordsToPixel(m_particles[0].GetCenterCoord(), m_particles[0].GetCartPlane()));
+	}
+	FloatRect spriteBounds = sprite.getGlobalBounds();
+    
+   
+	if (m_particles.size() == 1 && spriteBounds.contains(PartPos))
+	{
+	        m_particles.erase(m_particles.begin()); 
+		hit = true;
+	}
+	if (hit && !soundPlayed)  
+    	{
+        	sound.play();
+        	soundPlayed = true; 
+	}
+	if(hit)
+	{
+		sprite.move(0, 500 * dt);  
+	}
+	else
+	{
+		if(SpriteY > 500) SpriteNeg = 1;
+		if(SpriteY < 0) SpriteNeg = -1;
+		sprite.move(0, moveSpeed * dt * SpriteNeg);  
+        	SpriteY -= moveSpeed * dt * SpriteNeg; 
+	}
 }
 
 void Engine::draw()
@@ -250,39 +253,42 @@ void Engine::draw()
 	m_Window.display();	
 }
 
-void Engine::loadText(Text& text)
+void Engine::MakeNoise()
 {
-	
-	stringstream ss;
-	ss << "Particles" << endl;
-	ss << "FPS : " << getFramerate() << endl;
-	ss << "Particle Count: " << m_particles.size() << endl;
-	ss << "Thread Count: " << getThreadCount() << endl;
-	if(Game == 3)
+	buffer.loadFromFile("MarioFall.wav");
+	sound.setBuffer(buffer);
+}
+
+
+void Engine::Game3Part(float dt)
+{
+	Vector2i PartRand;
+	PartRand.x = rand() % 100 + 1000;
+	PartRand.y = 200;
+	TimePart -= dt;
+	Vector2f PartPos3;
+	PartPos3.x = 0.0;
+	PartPos3.y = 0.0;
+	FloatRect RectBounds = GameRect.getGlobalBounds();
+	RectBounds.left -= 75;
+	RectBounds.width += 150;
+	if (TimePart < 0) 
 	{
-		ss << "Press ESC to exit to game select" << endl;
-		ss << "Move Mouse to move Rectangle" << endl;
-		ss << "Catch as many Particles as you can" << endl;
-		ss << "Game Score: " << count << endl;
+		for(int i = 0; i < 5; i++)
+		{
+			m_particles.push_back(Particle(m_Window, rand() % 50 + 25, PartRand));
+		}
+		TimePart = 1;
 	}
-	if(Game == 0)
+	for(int i = 0; i < m_particles.size(); i++)
 	{
-		ss << "Press ESC to Exit \n Press 1 for Particle Creation \n Press 2 for Hit the Mario" << endl;
-		ss << "Press 3 for Catch the Particle" << endl;
+		PartPos3 = Vector2f(m_Window.mapCoordsToPixel(m_particles[i].GetCenterCoord(), m_particles[i].GetCartPlane()));
+		if (RectBounds.contains(PartPos3))
+		{
+	        	m_particles.erase(m_particles.begin() + i); 
+			count++;
+		}
 	}
-	if(Game == 1)
-	{
-		ss << "Press ESC to exit to game select \n Left click to make 10 Particles \n Press Spacebar to stop time" << endl;
-	}
-	if(Game == 2 && hit) 
-	{
-		ss << "YOU WIN \n Press ESC to go back to game select \n Press R to play again" << endl;
-	}
-	if(Game == 2 && !hit) 
-	{
-		ss << "Press ESC to exit to game select \n Left Click to make Particle \n Right Click to throw Particle \n You win if you his Mario" << endl;
-	}
-	text.setString(ss.str());
 }
 
 void Engine::run()
