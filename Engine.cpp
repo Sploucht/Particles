@@ -150,7 +150,6 @@ void Engine::input()
 			if (event.type == sf::Event::MouseMoved)
 			{
 				GameRect.setPosition(Vector2f(event.mouseMove.x, 650));
-				cout << event.mouseMove.y << endl;
 			}
 		}	
 	}
