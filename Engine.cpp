@@ -75,11 +75,6 @@ void Engine::input()
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num1 && Game == 0) Game = 1; 
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num2 && Game == 0) Game = 2; 
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Num3 && Game == 0) Game = 3; 
-		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 3) 
-		{
-			Game = 0; 
-			count = 0;
-		}
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 0) event.type = Event::Closed; 
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 2)
 		{
@@ -88,6 +83,11 @@ void Engine::input()
 			hit = false;
 			soundPlayed = false; 
 		} 
+		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 3) 
+		{
+			Game = 0; 
+			count = 0;
+		}
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape && Game == 1) Game = 0;
 		//Close window
 		if (event.type == Event::Closed)
