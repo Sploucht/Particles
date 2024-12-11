@@ -17,6 +17,7 @@ void Engine::updateParticleRange(size_t start, size_t end, float dtAsSeconds)
 			m_particles.erase(m_particles.begin() + start);
 			end--; //Adjust end since we removed an element
 		}
+	}
 }
 void Engine::MakeNoise()
 {
